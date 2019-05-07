@@ -49,6 +49,24 @@ function draw() {
   renderDiscs();
 }
 
+function mouseReleased() {
+  addDisc();
+}
+
+function addDisc() {
+  discs.push({
+    x: mouseX,
+    y: mouseY,
+    oldx: pmouseX,
+    oldy: pmouseY,
+    r: 10,
+    fill: '#000',
+    options: {
+      
+    }
+  });
+}
+
 function updateDiscs() {
   for(var i=0; i < discs.length; i++) {
     var d = discs[i];
@@ -132,6 +150,9 @@ function checkCircleCollision() {
         //solveCollision(d0, d1);
         d0.options.freeze = true;
         d1.options.freeze = true;
+        
+        var angle = -Math.atan2(d1.y - d0.y, d1.x - d0.x);
+        
       }
     }
   }
