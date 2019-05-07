@@ -5,12 +5,12 @@ var discs = [],
   restitution = 0.675;
 
 discs.push({
-  x: 350,
+  x: 210,
   y: 245,
-  oldx: 355,
+  oldx: 200,
   oldy: 240,
-  r: 20,
-  fill: 'rgb(240,205,0)',
+  r: 15,
+  fill: 'rgb(0,0,255)',
   options: {
     
   }
@@ -21,7 +21,7 @@ discs.push({
   oldx: 215,
   oldy: 57,
   r: 10,
-  fill: 'rgb(240,205,0)',
+  fill: 'rgb(255,255,0)',
   options: {
     
   }
@@ -29,10 +29,10 @@ discs.push({
 discs.push({
   x: 175,
   y: 10,
-  oldx: 175,
+  oldx: 160,
   oldy: 10,
   r: 5,
-  fill: 0,
+  fill: 'rgb(255,0,0)',
   options: {
     
   }
