@@ -1,0 +1,11 @@
+html, body{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Dosis', sans-serif;
+  text-align: center;
+  margin: 0;
+}
+
+canvas {
+  display: block;
+}

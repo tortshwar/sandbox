@@ -6,34 +6,34 @@ var points = [],
 
 
 points.push({
-  x: 0,
-  y: 0,
-  oldx: -1,
-  oldy: 0,
+  x: -9,
+  y: -60,
+  oldx: -10,
+  oldy: -61,
   r: 2.5,
   fill: '#ffa500'
 });
 points.push({
   x: -9,
-  y: -62,
+  y: -60,
   oldx: -10,
-  oldy: -62,
+  oldy: -60.999,
   r: 2.5,
   fill: '#ff2500'
 });
 points.push({
   x: -9,
-  y: -64,
+  y: -60,
   oldx: -10,
-  oldy: -64,
+  oldy: -60.998,
   r: 2.5,
   fill: '#005faa'
 });
 points.push({
   x: -9,
-  y: -66,
+  y: -60,
   oldx: -10,
-  oldy: -66,
+  oldy: -60.997,
   r: 2.5,
   fill: '#00ff5a'
 });
