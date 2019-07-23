@@ -172,10 +172,14 @@ function solveConstraints() {
       }
       
       if(p.x < -h) {
+        p.x = (r * Math.cos(theta)) - h;
+        p.y = r * Math.sin(theta);
         p.oldx = p.x + (unitRx*vMag*restitution);
         p.oldy = p.y + (unitRy*vMag*restitution);
       }
       else if(p.x > h) {
+        p.x = (r * Math.cos(theta)) + h;
+        p.y = r * Math.sin(theta);
         p.oldx = p.x + (unitRx*vMag*restitution);
         p.oldy = p.y + (unitRy*vMag*restitution);
       }
