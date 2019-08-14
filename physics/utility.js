@@ -40,43 +40,46 @@ function solveConstraints() {
 
 function solveCollisions() {
   for(var i=0; i < discs.length; i++) {
-    for(var j=0; j < discs.length; j++) {
+    for(var j=i+1; j < discs.length; j++) {
       var d0 = discs[i];
       var d1 = discs[j];
       if(i == j) {
         continue;
       }
       var distance = Math.pow(d1.x-d0.x, 2)+Math.pow(d1.y-d0.y, 2);
+      var dist = Math.sqrt(Math.pow(d1.x-d0.x, 2)+Math.pow(d1.y-d0.y, 2));
       
       if (distance <= (d0.radius+d1.radius)*(d0.radius+d1.radius)) {
         
-        var theta1 = Math.atan2(d0.y - d0.velocity.y, d0.x - d0.velocity.x);
-        var theta2 = Math.atan2(d1.y - d1.velocity.y, d1.x - d1.velocity.x);
-        var phi = Math.atan2(d1.y - d0.y, d1.x - d0.x);
+        var cVX = (d1.x - d0.x)/dist;
+        var cVY = (d1.y - d0.y)/dist;
+        var overlapX = (dist - (d0.radius + d1.radius))*cVX;
+        var overlapY = (dist - (d0.radius + d1.radius))*cVY;
+        
+        d0.x = d0.x + (overlapX/2);
+        d0.y = d0.y + (overlapY/2);
+        d1.x = d1.x - (overlapX/2);
+        d1.y = d1.y - (overlapY/2);
         
         var m1 = d0.mass;
         var m2 = d1.mass;
         
-        var v1 = Math.sqrt(Math.pow(d0.x-d0.velocity.x, 2)+Math.pow(d0.y - d0.velocity.y, 2));
-        var v2 = Math.sqrt(Math.pow(d1.x-d1.velocity.x, 2)+Math.pow(d1.y - d1.velocity.y, 2));
+        var nx = (d1.x - d0.x) / dist;
+        var ny = (d1.y - d0.y) / dist;
         
-        v1PrimeX = ((v1 * Math.cos(theta1 - phi) * (m1 - m2) + 2 * m2 * v2 * Math.cos(theta2 - phi))/(m1 + m2))*(Math.cos(phi) + v1 * Math.sin(theta1 - phi) * Math.cos(phi + (Math.PI / 2)));
-        v1PrimeY = ((v1 * Math.cos(theta1 - phi) * (m1 - m2) + 2 * m2 * v2 * Math.cos(theta2 - phi))/(m1 + m2))*(Math.sin(phi) + v1 * Math.sin(theta1 - phi) * Math.sin(phi + (Math.PI / 2)));
-        v2PrimeX = ((v2 * Math.cos(theta2 - phi) * (m2 - m1) + 2 * m1 * v1 * Math.cos(theta1 - phi))/(m1 + m2))*(Math.cos(phi) + v2 * Math.sin(theta2 - phi) * Math.cos(phi + (Math.PI / 2)));
-        v2PrimeY = ((v2 * Math.cos(theta2 - phi) * (m2 - m1) + 2 * m1 * v1 * Math.cos(theta1 - phi))/(m1 + m2))*(Math.sin(phi) + v2 * Math.sin(theta2 - phi) * Math.sin(phi + (Math.PI / 2)));
+        var p = 2 * (d0.velocity.x* nx + d0.velocity.y * ny - d1.velocity.x * nx + d1.velocity.y * ny) / (m1 + m2);
         
-        d0.velocity.x = v1PrimeX;
-        d0.velocity.y = v1PrimeY;
-        
-        d1.velocity.x = v2PrimeX;
-        d1.velocity.y = v2PrimeY;
+        d0.velocity.x = d0.velocity.x - p * m1 * nx;
+        d0.velocity.y = d0.velocity.y - p * m1 * ny;
+        d1.velocity.x = d1.velocity.x + p * m2 * nx;
+        d1.velocity.y = d1.velocity.y + p * m2 * ny;
       }
     }
   }
 }
 
 function renderDiscs() {
-  //background(bg);
+  background(bg);
   for(var i=0; i < discs.length; i++) {
     var d = discs[i];
     fill(d.fill);
