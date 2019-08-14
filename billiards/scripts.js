@@ -5,7 +5,18 @@ var points = [],
   gravity = 0.1;
 
 
-points.push({
+for(var i=-75; i < 75; i += 0.1) {
+  points.push({
+    x: 0,
+    y: i,
+    oldx: -1,
+    oldy: i-0.1,
+    r: 0.5,
+    fill: '#ffa500'
+  });
+}
+
+/*points.push({
   x: -9,
   y: -60,
   oldx: -10,
@@ -36,7 +47,7 @@ points.push({
   oldy: -60.997,
   r: 2.5,
   fill: '#00ff5a'
-});
+});*/
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -69,7 +80,7 @@ function updatePoints() {
     stroke('#eee');
     
     // velocity vector visualization
-    line(p.x, p.y, p.x+(20*vx), p.y+(20*vy));
+    //line(p.x, p.y, p.x+(20*vx), p.y+(20*vy));
   }
 }
 
