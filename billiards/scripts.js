@@ -7,10 +7,10 @@ var points = [],
 
 for(var i=-75; i < 75; i += 0.1) {
   points.push({
-    x: 0,
+    x: i,
     y: i,
-    oldx: -1,
-    oldy: i-0.1,
+    oldx: i-0.5,
+    oldy: i-0.45,
     r: 0.5,
     fill: '#ffa500'
   });
